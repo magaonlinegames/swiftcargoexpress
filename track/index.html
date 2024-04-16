@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Track Your Shipment | Swift Cargo Express</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="tracking_new.css">
+    <link rel="stylesheet" href="MODEL1.css">
+    <link rel="icon" href="../images/logo1.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+
+    <!--MODEL-1 ACCOUNT REMOLDED-->
+        <div class="ACCOUNTPAGE hide">
+          <div class="HEADERBX">
+            <span class="LOGOBX">
+              Swift Cargo Express
+            </span>
+            <span class="HEADERTRACKERBX">
+              <span class="c0"></span>
+              <span class="c0line"></span>
+              <span class="c0txt">Confirmed</span>     
+              
+              <span class="c1"></span>
+              <span class="c1line"></span>
+              <span class="c1txt">In-transit</span>
+
+              <span class="c2"></span>
+              <span class="c2line"></span>
+              <span class="c2txt">Arrived</span>
+
+              <span class="c3"></span>
+              <span class="c3txt">Delivered</span>
+            </span>
+          </div>
+
+          <div class="MAINSCREEN">
+            <div class="M50BOX box1">
+              <div class="ACCOUNTMAP">
+                <iframe id="CONSIGNMENT_MAP_IFRAME"  width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+              </div>
+            </div>
+            <div class="M50BOX box2">
+              <span class="title flow-text">Consignment Information</span>
+              <ul>
+                <li>
+                  <span class="lbl">Contents</span>
+                  <span class="dbTxts"></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+    <!--// END OF MODEL-1 ACCOUNT REMOLDED-->
+        <div class="LOGIN" id="LOGIN-PHASE">
+            <br><br><br><br><br>
+            <div class="login-bx card">
+                <p class="flow-text" style="text-align: center;">Swift Cargo Express</p>
+                <div class="input-field col s6">
+                    <input placeholder="" id="login_number" type="text" class="validate">
+                    <label for="login_number" class="black-text">Tracking Number/BL Number/Receipt Number</label>
+                </div>
+                <blockquote>
+                    
+                </blockquote>
+                <a class="btn" id="login_track_btn" onclick="loginUser();">TRACK  <i class="material-icons"></i> </a>
+                <div class="center-align">
+                    <div class="preloader-wrapper big active hide" id="loader-1">
+                        <div class="spinner-layer spinner-blue-only">
+                          <div class="circle-clipper left">
+                            <div class="circle"></div>
+                          </div><div class="gap-patch">
+                            <div class="circle"></div>
+                          </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      <div class="ACCOUNT_01 hide">
+        <div class="MAPP row">
+          <iframe id="CONSIGNMENT_MAP_IFRAME_GOD"  width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <div class="btm_content">
+          <div class="row">
+            <a></a>
+          </div>
+          <div class="container SHIPMENTUPDATE">
+            <div class="row SU">
+
+              <label for="">Consignment status: </label>
+              <span class="SU_STATUS txtW" id="CONSIGNMENT_STATUS"> </span>
+              <label for="">Date of Arrival: </label>
+
+              <span class="SU_DELIVERYTIME txtG" id="CONSIGNMENT_DELIVERY_TIME"></span>
+              <div class="progress" style="height:13px;">
+                <div class="determinate blue"  id="CONSIGNMENT_PROGRESS"></div>
+              </div>
+            </div>
+
+            <div class="TRACKINGUPDATE TU white-text">
+              <ul id="CONSIGNMENT_TRACKING">
+                <li class="hide">
+                  <i class="material-icons">directions_boat</i>
+                  <span class="tuSTATUS">Package departed from the facility at local SCE Facility</span>
+                  <span class="tuADDRESS txtG">123 AVENUE COLE PARKSOON APARTMENT 23</span>
+                  <span class="tuDATE txtG">Jul 13, 2021 8:36 PM</span>
+                </li>
+
+                <li class="TUXXX hide">
+                  <i class="material-icons">warning</i>
+                  <span class="tuSTATUS">Consignment Held By Customs</span>
+                  <span class="tuADDRESS txtG">123 AVENUE COLE PARKSOON APARTMENT 23</span>
+                  <span class="tuDATE txtG">Jul 13, 2021 8:36 PM</span>
+                  <i class="material-icons tuALERT">close</i>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="CU USERDETAILS UD">
+            <div class="row">
+              <div class="col s12">
+                <div class="card-panel god-panel" style="background-color: #fff;">
+                  <span class="udTITLE">Consignment Information</span>
+                  <hr>
+                  <div class="row" id="ORIGIN_TS_DESTINATION_PORT">
+                    <div class="col s4">
+                      <span class="lbl">Origin Port</span>
+                      <p class="flow-text upc" id="CONSIGNMENT_ORIGIN_PORT">N/A</p>
+                    </div>
+                    <div class="col s4">
+                      <span class="lbl">VESSEL</span>
+                      <p class="flow-text" id="CONSIGNMENT_VESSEL">OMB78110</p>
+                    </div>
+                    <div class="col s4">
+                      <span class="lbl">DESTINATION Port</span>
+                      <p class="flow-text upc" id="CONSIGNMENT_DESTINATION_PORT">N/A</p>
+                    </div>
+                  </div>
+                  <span class="white-text udSENDERNAME"></span>
+
+                  <table class="striped" id="CITABLE">
+                    <thead>
+                      
+                    </thead>
+            
+                    <tbody>
+                      <tr>
+                        <td class="grey-text">Item being shipped</td>
+                        <td class="udCIDATA" id="CONSIGNMENT_ITEM">N/A</td>
+                      </tr>
+                      <tr>
+                        <td class="grey-text">Item quantity</td>
+                        <td class="udCIDATA" id="CONSIGNMENT_ITEM_QUANTITY">N/A</td>
+                      </tr>
+                      <tr>
+                        <td class="grey-text">Item weight</td>
+                        <td class="udCIDATA" id="CONSIGNMENT_ITEM_WEIGHT">N/A</td>
+                      </tr>
+                      <tr>
+                        <td class="grey-text">Tracking number</td>
+                        <td class="udCIDATA" id="CONSIGNMENT_TRACKING_NUMBER">N/A</td>
+                      </tr>
+                      <tr>
+                        <td class="grey-text">Shipment date</td>
+                        <td class="udCIDATA" id="CONSIGNMENT_SHIPMENT_DATE">N/A</td>
+                      </tr>
+                      <tr>
+                        <td class="grey-text">B/L No</td>
+                        <td class="udCIDATA" id="CONSIGNMENT_BILL_OF_LADEN">N/A</td>
+                      </tr>
+                      <tr>
+                        <td class="grey-text">Container No</td>
+                        <td class="udCIDATA" id="CONSIGNMENT_CONTAINER_NUMBER">N/A</td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+
+                  <div class="row">
+                    <div class="col s12 m6">
+                      <div class="card-panel" style="background-color: #fff;">
+                        <span class="udTITLE">Sender Information</span>
+                        <hr>
+                        <span class="white-text udSENDERNAME"></span>
+                        <table class="striped">
+                          <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                          </thead>
+                  
+                          <tbody>
+                            <tr>
+                              <td class="grey-text">Sender Name</td>
+                              <td class="udCIDATA" id="CONSIGNMENT_SENDER">N/A</td>
+                            </tr>
+                            <tr>
+                              <td class="grey-text">Sender Address</td>
+                              <td class="udCIDATA" id="CONSIGNMENT_SENDER_ADDRESS">N/A</td>
+                            </tr>
+                            <tr>
+                              <td class="grey-text">Sender Email</td>
+                              <td class="udCIDATA" id="CONSIGNMENT_SENDER_EMAIL">N/A</td>
+                            </tr>
+                            <tr>
+                              <td class="grey-text">Sender Contact Number</td>
+                              <td class="udCIDATA" id="CONSIGNMENT_SENDER_CONTACT">N/A</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    <div class="col s12 m6">
+                      <div class="card-panel plc1" style="background-color: #fff;">
+                        <span class="udTITLE">Receiver Information</span>
+                        <hr>
+                        <span class="white-text udSENDERNAME"></span>
+                        <table class="striped">
+                          <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                          </thead>
+
+                          <table class="highlight striped">
+                            <thead class="hide">
+                              <tr>
+                                  <th></th>
+                                  <th></th>
+                              </tr>
+                            </thead>
+                    
+                            <tbody>
+                              <tr>
+                                <td>Receiver Name</td>
+                                <td id="CONSIGNMENT_RECEIVER">  </td>
+                              </tr>
+                              <tr>
+                                <td>Receiver Address</td>
+                                <td id="CONSIGNMENT_RECEIVER_ADDRESS"></td>
+                              </tr>
+                              <tr>
+                                <td>Receiver Email</td>
+                                <td id="CONSIGNMENT_RECEIVER_EMAIL"></td>
+                              </tr>
+                              <tr>
+                                <td>Receiver Number</td>
+                                <td id="CONSIGNMENT_RECEIVER_NUMBER"></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                  
+                          
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              
+            </div>
+          </div>
+        </div>
+      </div>  
+
+      <div class="ACCOUNT hide" id="ACCOUNT-1">
+          <div class="row right-align">
+            <a href="/track" class="btn blue"> LOG OUT</a>
+          </div>
+        <div class="row" >
+            <div class="col s12 m6 card">
+                <p class="flow-text">Consignment information</p>
+                <hr>
+                <table class="striped">
+            
+                    <tbody>
+                      <tr>
+                        <td class="grey-text">Tracking number</td>
+                        <td class="tn center-align" id="tracking_number"></td>
+                      </tr>
+    
+                      <tr>
+                        <td class="grey-text">Shipment date</td>
+                        <td class="tn center-align" id="shipment_date"></td>
+                      </tr>
+    
+                      <tr>
+                        <td class="grey-text">B/L No</td>
+                        <td class="tn center-align" id="bill_of_laden">N/A</td>
+                      </tr>
+    
+                      <tr>
+                        <td class="grey-text">Container No</td>
+                        <td class="tn center-align" id="tracking_number">N/A</td>
+                      </tr>
+    
+                      <tr>
+                        <td class="grey-text">Carrier</td>
+                        <td class="tn center-align" id="carrier">OCW Line</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="cnt">
+                        <p class="flow-text">Consignment information</p>
+                        <hr>
+                        <table class="striped">
+                    
+                            <tbody>
+                            <tr>
+                                <td class="grey-text">Item being shipped</td>
+                                <td class="tn center-align" id="item_being_shipped">N/A</td>
+                            </tr>
+    
+                            <tr>
+                                <td class="grey-text">Item quantity</td>
+                                <td class="tn center-align" id="item_quantity">N/A</td>
+                            </tr>
+    
+                            <tr>
+                                <td class="grey-text">Item weight</td>
+                                <td class="tn center-align" id="item_weight">N/A</td>
+                            </tr>
+                            </tbody>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col s3">
+                <p class="green-text sml_txt">ORIGIN PORT</p>
+                <span class="flow-text" id="origin_port">N/A</span>
+            </div>
+    
+            <div class="col s5">
+                <p class="green-text sml_txt">TS PORT</p>
+                <span class="flow-text" id="ts_port">N/A</span>
+            </div>
+    
+            <div class="col s4">
+                <p class="green-text sml_txt">DESTINATION PORT</p>
+                <span class="flow-text" id="destination_port">N/A</span>
+            </div>
+          </div>
+          <hr>
+          <br><br><br>
+          <div class="status blue-text text-darken-3 flow-text">
+            <span style="padding-left: 10px;">  TRACKING HISTORY</span>
+          </div>
+    
+          <div class="row">
+            
+            <table>
+                <thead class="blue">
+                  <tr>
+                      <th class=""> <span class="bxc"><i class="material-icons left">location_on</i> LOCATION</span> </th>
+                      <th class=""> <span class="bxc"><i class="material-icons left">arrow_downward</i> MOVES</span> </th>
+                      <th class=""> <span class="bxc"><i class="material-icons left">alarm</i> DATE</span> </th>
+                      <th class=""> <span class="bxc"><i class="material-icons left">directions_boat</i> VESSEL</span> </th>
+                  </tr>
+                </thead>
+        
+                <tbody id="tracking_update_section">
+                  <tr>
+                    <td id="location"></td>
+                    <td id="moves"></td>
+                    <td id="date"></td>
+                    <td id="vessel"></td>
+                  </tr>
+                </tbody>
+            </table>
+              <iframe src="" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+    
+          <div class="row">
+            <div class="col s12 m6 card">
+                <p class="flow-text">Sender Information</p>
+                <hr>
+                <table class="striped">
+            
+                    <tbody>
+                      <tr>
+                        <td class="grey-text">Sender Name</td>
+                        <td class="sn center-align" id="sender_name">N/A</td>
+                      </tr>
+    
+                      <tr>
+                        <td class="grey-text">Sender Address</td>
+                        <td class="tn center-align" id="sender_address">N/A</td>
+                      </tr>
+    
+                      <tr>
+                        <td class="grey-text">Sender email</td>
+                        <td class="tn center-align" id="sender_email">N/A</td>
+                      </tr>
+    
+                      <tr>
+                        <td class="grey-text">Sender contact number</td>
+                        <td class="tn center-align" id="sender_contact_number">N/A</td>
+                      </tr>
+    
+                      <tr>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+    
+            <div class="col s12 m6 card">
+                <p class="flow-text">Receiver Information</p>
+                <hr>
+                <table class="striped">
+            
+                    <tbody>
+                      <tr>
+                        <td class="grey-text">Receiver Name</td>
+                        <td class="sn center-align" id="receiver_name"></td>
+                      </tr>
+    
+                      <tr>
+                        <td class="grey-text">Receiver address</td>
+                        <td class="tn center-align" id="receiver_address"></td>
+                      </tr>
+    
+                      <tr>
+                        <td class="grey-text">Receiver email</td>
+                        <td class="tn center-align" id="receiver_email"></td>
+                      </tr>
+    
+                      <tr>
+                        <td class="grey-text">Receiver contact number</td>
+                        <td class="tn center-align" id="receiver_contact_number"></td>
+                      </tr>
+    
+                      <tr>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            
+          </div>
+      </div>
+
+      <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
+      <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyBOKZ_0oPvvbkINz_CdDeo70xlhagw0Csc",
+          authDomain: "command-center-18c31.firebaseapp.com",
+          projectId: "command-center-18c31",
+          storageBucket: "command-center-18c31.appspot.com",
+          messagingSenderId: "532092672696",
+          appId: "1:532092672696:web:4cb03667b3c03e11b3724d"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        $('.fixed-action-btn').floatingActionButton();
+      </script> 
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="tracking.js"></script>
+
+</body>
+</html>

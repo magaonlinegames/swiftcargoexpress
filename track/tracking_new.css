@@ -1,0 +1,172 @@
+.sml_txt{
+    font-size: 10px!important;
+}
+
+.status span{
+    display: block;
+}
+.bxc{
+    display: inline-block;
+}
+.cnt{
+    padding: 2px 8px;
+}
+
+
+
+.LOGIN{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-image: url('track.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.login-bx{
+    margin-top: 10px;
+    width: 98%;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.91);
+    padding: 8px;
+}
+.login-bx .btn{
+    display: block;
+    background-color: #030f27!important;
+}
+@media screen and (min-width: 600px) {
+    .login-bx {
+      width: 500px;
+    }
+}
+
+#tracking_update_section td{
+    text-transform: uppercase;
+}
+
+.ACCOUNT_01{
+    position: fixed;
+    top: 0;
+    background-color: #000;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.ACCOUNT_01 iframe{
+    width: 100%!important;
+    height: 450px!important;
+}
+.SU span{
+    display: block;
+}
+.txtW{
+    color: white;
+}
+.txtG{
+    color: grey;
+}
+.TU{
+}
+.TU ul{
+    width: 90%;
+    margin: auto;
+}
+.TU ul li{
+    padding: 8px 0;
+    border-top: 1PX solid grey;
+    border-bottom: 1PX solid grey;
+    position: relative;
+}
+.TU ul li i{
+    display: block;
+    font-size: 17px;
+}
+.TU ul li span{
+    display: block;
+}
+.tuSTATUS{
+    font-size: 12px;
+    letter-spacing: 2px;
+    line-height: 19px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+.TUXXX i{
+    color: red!important;
+}
+.tuALERT{
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+.tuADDRESS{
+    font-size: 14px;
+    text-transform: uppercase;
+    position: relative;
+    top: -3px;
+}
+.tuDATE{
+    font-size: 9px;
+    text-transform: uppercase;
+    position: relative;
+    top: 5px;
+    letter-spacing: 2px;
+}
+
+.USERDERTAILS{
+    border-top: 1px solid red;
+}
+#ORIGIN_TS_DESTINATION_PORT p{
+    margin: 0;
+}
+#ORIGIN_TS_DESTINATION_PORT .lbl{
+    color: rgb(93, 185, 0);
+    text-transform: uppercase;
+    font-size: 11px;
+}
+.UD{
+    width: 98%;
+    margin: auto;
+    max-width: 1397px;
+}
+#CITABLE tr{
+}
+.UD span{
+    display: block;
+}
+.uiTITLE{
+    font-size: 13px;
+}
+.udCIDATA{
+    text-align: right;
+}
+#CONSIGNMENT_DELIVERY_TIME{
+    text-transform: uppercase;
+}
+.god-panel{
+    max-width: 1030px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+
+
+#CONSIGNMENT_RECEIVER,#CONSIGNMENT_RECEIVER_ADDRESS,#CONSIGNMENT_RECEIVER_NUMBER,#CONSIGNMENT_RECEIVER_EMAIL{
+    text-align: right;
+    text-transform: uppercase;
+}
+
+#CONSIGNMENT_DELIVERY_TIME {
+    font-size: 12px;
+}
+#CONSIGNMENT_STATUS{
+    position: relative;
+    top: -5px;
+}
+
+.plc1{
+    overflow: auto;
+}

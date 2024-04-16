@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Track Your Shipment | Oceanwave Logistics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css' integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/' crossorigin='anonymous'>
+
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <style media="screen">
+
+    html, body {
+      width: 100%;
+      background-image: url("img/oceanb.jpg");
+      background-size: cover;
+      background-color: #ECEFF1;
+    }
+
+
+    /****************************************************/
+    /*  My Own Style */
+    /****************************************************/
+    /*Acccount Login */
+    .loginbox{
+      padding: 50px 10px;
+      background: black;
+      width: 50%;
+      margin-top: 100px;
+      border-radius: 10px;
+      color: #fff;
+      text-align: center;
+    }
+    #myinput{
+      width: 95%!important;
+      background-color: white;
+    }
+    #loginbtn{
+      width: 30%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .order-visuals{
+      text-align: center;
+    }
+
+
+    /*User Account */
+
+    #nav {
+      width: 100%;
+      text-align: right;
+
+    }
+    #myinput{
+      width: 240px;
+      padding: 15px;
+      border-radius: 5px;
+      color: black;
+      font-size: 25px;
+      text-align: center;
+    }
+    .loader{
+      color: blue;
+      margin-top: 10px;
+    }
+    #royal, #royal-mada, #evans, #zamani, .lifestyle-account{
+      background: white;
+      padding-top: 50px;
+      width: 100%;
+      height: 1500px;
+      overflow: auto;
+
+    }
+    .firstrow,.secondrow{
+      border: 1px solid grey;
+      padding: 10px 0;
+    }
+    .secondrow{
+      margin-top: 10px;
+    }
+    .order-status {
+      border: 1px solid red;
+    }
+    .order-visuals th{
+      font-size: 100%;
+    }
+
+
+    .time-small{
+      color: grey;
+    }
+    .shipmentdetails {
+      font-size: 80%;
+    }
+    .shipmentdetails h6 {
+      font-size: 90%;
+      text-transform: capitalize;
+    }
+    .greenlight{
+      background: green;
+    }
+    .redlight{
+      background: red;
+    }
+    .shipmentdetails p{
+      margin: 0;
+    }
+    .mapbtn{
+      cursor: pointer;
+      color: green;
+    }
+    .iframe-ship{
+      display: none;
+    }
+    .danger{
+      margin-top: 10px;
+      font-size: 80%;
+    }
+
+    body{
+      background-color: #ECEFF1;
+    }
+
+
+    @media only screen and (max-width: 900px) {
+      /*Acccount Login */
+      .loginbox{
+        padding: 50px 10px;
+        background: rgba(0,0,0,0.5);
+        width: 95%;
+        margin-top: 100px;
+        border-radius: 10px;
+      }
+      #myinput{
+        width: 100%!important;
+      }
+      #loginbtn{
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .order-visuals th{
+        font-size: 52%;
+      }
+
+    }
+
+  </style>
+  <body>
+
+      <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+      <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+      <script src="/__/firebase/7.22.0/firebase-app.js"></script>
+
+      <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+      <script src="/__/firebase/7.22.0/firebase-analytics.js"></script>
+
+      <!-- Add Firebase products that you want to use -->
+      <script src="/__/firebase/7.22.0/firebase-auth.js"></script>
+      <script src="/__/firebase/7.22.0/firebase-firestore.js"></script>
+      <script src="/__/firebase/7.22.0/firebase-hosting.js"></script>
+
+
+    <div class="container loginbox">
+        <i class="fa fa-refresh fa-spin fa-3x fa-fw loader" aria-hidden="true"></i>
+        <br><br>
+        <div class="form-group">
+          <label for="email">Consignment Number:</label>
+          <input  type="text"  id="myinput">
+          <div class="card bg-danger text-white danger">
+              <div class="card-body">Please enter a valid number - NB: You can enter your tracking number here</div>
+            </div>
+        </div>
+      <center>
+        <button type="submit" class="btn btn-primary loginbtn" id="loginbtn">Submit</button>
+        <br>
+        <p><small>Can't track your shipment? <a>Contact us</a></small></p>
+        <p><small>Go back to Homepage <a href="index.html">Click here</a></small></p>
+      </center>
+
+
+    </div>
+
+    <!---------------------------------------------------------------------------------------------------------->
+    <!-- CASTY 02-JUL-20 -->
+    <div class="container-fluid" id="evans">
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" >
+        <a href="track-your-shipment.htm" id="nav"><i class="fas fa-user-slash"></i> Log-out</a>
+      </nav>
+      <div class="container" >
+
+
+        <center>
+          <table class="table table-sm">
+              <thead>
+                <tr class="order-visuals">
+                  <th>ACCEPTED</th>
+
+                  <!--
+                  <th><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:green"></i></th>
+
+                  <th>ON-TRANSIT</th>
+                -->
+                  <th style="color:white"><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:white"></i></th>
+                  <th style="color:white">Email</th>
+                  <th style="color:white"><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:white"></i></th>
+                  <th style="color:white">Email</th>
+                </tr>
+              </thead>
+
+            </table>
+         </center>
+
+      <div class="row firstrow">
+        <div class="col-sm-4">
+          <div class="card bg-light text-dark">
+              <div class="card-body">
+                <h5>Shipment Information</h5>
+                <hr>
+                <p><span >Tracking number:</span> <small>AU104937369522US</small></p>
+                <p><span >Shipment date:</span> <small>23rd DECEMBER 2020 </small></p>
+                <p><span >Item(s) to be shipped:</span> <small> AU GOLD BARS</small></p>
+                <p><span >Size:</span> <small>180KGS</small></p>
+
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+          <br>
+          <br>
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6>December 19, 2020</h6>
+              <p><small class="time-small">8:15</small></p>
+
+
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6> CONSIGNMENT AT STORAGE</h6>
+              <p><small class="time-small">180KGS, AU GOLD BARS </small> </p>
+              <p><small class="time-small">Level 19/839 Collins St, Docklands VIC 3008, Australia </small></p>
+              <p><small class="time-small mapbtn">View on map</small></p>
+            </div>
+          </div>
+          <hr class="greenlight">
+
+        </div>
+
+      </div>
+
+      <div class="container map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3151.6535054779342!2d144.9443459!3d-37.8215842!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642b7221f3645%3A0x71b612e6326e8c60!2sPort%20of%20Melbourne%20Operations%20Pty.%20Ltd.!5e0!3m2!1sen!2sus!4v1608396773416!5m2!1sen!2sus" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+      </div>
+
+      <div class="row secondrow">
+        <div class="col-sm-6">
+          <div class="card bg-light text-dark">
+              <div class="card-body">
+                <h5>Sender Information</h5>
+                <hr>
+                <p><span >Sender Name:</span> <small> KYMBERLY MYERS </small></p>
+                <p><span >Sender Location:</span> <small>AUSTRALIA </small></p>
+                <p><span >Sender Contact Number:</span> <small> NOT AVAILABLE </small></p>
+                <p><span >Sender Email:</span> <small>KYMMERS77@GMAIL.COM</small></p>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="card bg-light text-dark">
+              <div class="card-body">
+                <h5>Receiver Information</h5>
+                <hr>
+                <p><span >Receiver Name:</span> <small>JAMES VASSALO</small></p>
+                <p><span >Receiver Location:</span> <small>14731 SINKS ROAD FLORISSANT MISSOURI 63034 </small></p>
+                <p><span >Receiver Contact Number:</span> <small>+13146536278 </small></p>
+                <p><span >Receiver Email:</span> <small>NOT AVAILABLE </small></p>  <!-- WARNING: 1 -->
+
+              </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </div>
+    <!--CASTY 02-JUL-20------------------------------------------------------------------------------------------------>
+
+    <!-- WARNING: zamani friend -->
+    <div class="container-fluid" id="zamani">
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" >
+        <a href="track-your-shipment.htm" id="nav"><i class="fas fa-user-slash"></i> Log-out</a>
+      </nav>
+      <div class="container" >
+
+
+        <center>
+          <table class="table table-sm">
+              <thead>
+                <tr class="order-visuals">
+                  <th>ACCEPTED</th>
+
+                  <!--
+                  <th><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:green"></i></th>
+
+                  <th>ON-TRANSIT</th>
+                -->
+
+
+                  <th style="color:white"><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:white"></i></th>
+                  <th style="color:white">Email</th>
+                  <th style="color:white"><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:white"></i></th>
+                  <th style="color:white">Email</th>
+                </tr>
+              </thead>
+
+            </table>
+         </center>
+
+      <div class="row firstrow">
+        <div class="col-sm-4">
+          <div class="card bg-light text-dark">
+              <div class="card-body">
+                <h5>Shipment Information</h5>
+                <hr>
+                <p><span >Tracking number:</span> <small>GH88837369520CH</small></p>
+                <p><span >Shipment date:</span> <small>10:05, Feb 10, 2021 </small></p>
+                <p><span >Item(s) being shipped:</span>  <small>380 Kilos Gold Bar(s), 24 Karat(s), Standard Gold Bar </small></p>
+                <p><span >Size:</span> <small>4ocw</small></p>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+          <br>
+          <br>
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6>FEBRUARY 09, 2021</h6>
+              <p><small class="time-small">8:15am</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6> Information received for Shipment</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">34VR+R9 Tema Harbour - Ghana</small></p>
+            </div>
+          </div>
+          <hr class="greenlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6>FEBRUARY 10, 2021</h6>
+              <p><small class="time-small">12:30pm</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6> IN TRANSIT TO NEXT HUB (Spain HQ)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">34VR+R9 Tema Harbour - Ghana</small></p>
+            </div>
+          </div>
+          <hr class="greenlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6>FEBRUARY 11, 2021</h6>
+              <p><small class="time-small">10:31</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6> CONSIGNMENT EN ROUTE TO PORT OF ALGECIRAS  (Spain HQ)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">	Bay of Algeciras - Spain</small></p>
+            </div>
+          </div>
+          <hr class="greenlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6>FEBRUARY 11, 2021</h6>
+              <p><small class="time-small">11:55</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6> Clearance by Postal for Customs Inspection (N)  (Spain HQ)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">	Bay of Algeciras - Spain</small></p>
+            </div>
+          </div>
+          <hr class="greenlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6 >FEBRUARY 11, 2021</h6>
+              <p><small class="time-small">11:55</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6 style="color: red;">Consignment Held (F)  (Spain HQ)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">	Bay of Algeciras - Spain</small></p>
+            </div>
+          </div>
+          <hr class="redlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6 >FEBRUARY 14, 2021</h6>
+              <p><small class="time-small">03:07</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6 style="color: red;">Consignment returning back to destination country (E)  (GHANA)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">	34VR+R9 Tema Harbour - Ghana</small></p>
+            </div>
+          </div>
+          <hr class="redlight">
+        </div>
+
+      </div>
+      <div class="container map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25779.35733966546!2d-5.45074599948844!3d36.1319937758481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0c94d596155a59%3A0x7bd07ff2b78630d9!2sPort%20of%20Algeciras!5e0!3m2!1sen!2sgh!4v1613066745848!5m2!1sen!2sgh" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+      </div>
+
+      <div class="row secondrow">
+        <div class="col-sm-6">
+          <div class="card bg-light text-dark">
+              <div class="card-body">
+                <h5>Sender Information</h5>
+                <hr>
+                <p><span >Sender Name:</span> <small>Frank Adam</small></p>
+                <p><span >Sender Location:</span> <small>4/18 J St. Achimota, Ghana</small></p>
+                <p><span >Sender Contact Number:</span> <small>+1 (618) 477-8686</small></p>
+                <p><span >Sender Email:</span> <small>adamfrank830@gmail.com</small></p>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="card bg-light text-dark">
+              <div class="card-body">
+                <h5>Receiver Information</h5>
+                <hr>
+                <p><span >Receiver Name:</span> <small>Foo Theam Yoo</small></p>
+                <p><span >Receiver Location:</span> <small>IM DOERNLER 78602 WANGEN ZH SWITZERLAND</small></p>
+                <p><span >Receiver Contact Number:</span> <small>+(417) 641-21589</small></p>
+                <p><span >Receiver Email:</span> <small>kfoo@epost.ch </small></p>  <!-- WARNING: 1 -->
+              </div>
+            </div>
+        </div>
+
+
+      </div>
+
+      </div>
+    </div>
+    <!-- WARNING:\\ zamani friend -->
+
+    <!---------------------------------------------------------------------------------------------->
+    <!--
+      User account track OSA
+    -->
+    <div class="container-fluid" id="royal">  
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" >
+        <a href="track-your-shipment.htm" id="nav"><i class="fas fa-user-slash"></i>Log-out</a>
+      </nav>
+      <div class="container" >
+
+
+        <center>
+          <table class="table table-sm">
+              <thead>
+                <tr class="order-visuals">
+                  <th>ACCEPTED</th>
+
+                  <!--
+                  <th><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:green"></i></th>
+
+                  <th>ON-TRANSIT</th>
+                -->
+
+
+                  <th style="color:white"><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:white"></i></th>
+                  <th style="color:white">Email</th>
+                  <th style="color:white"><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:white"></i></th>
+                  <th style="color:white">Email</th>
+                </tr>
+              </thead>
+
+            </table>
+         </center>
+
+      <div class="row firstrow">
+        <div class="col-sm-4">
+          <div class="card bg-light text-dark">
+              <div class="card-body">
+                <h5>Shipment Information</h5>
+                <hr>
+                <p><span >Tracking number:</span> <small>GH88837369520CH</small></p>
+                <p><span >Shipment date:</span> <small>10:05, Feb 10, 2021 </small></p>
+                <p><span >Item(s) being shipped:</span>  <small>380 Kilos Gold Bar(s), 24 Karat(s), Standard Gold Bar </small></p>
+                <p><span >Size:</span> <small>4ocw</small></p>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+          <br>
+          <br>
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6>FEBRUARY 09, 2021</h6>
+              <p><small class="time-small">8:15am</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6> Information received for Shipment</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">34VR+R9 Tema Harbour - Ghana</small></p>
+            </div>
+          </div>
+          <hr class="greenlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6>FEBRUARY 10, 2021</h6>
+              <p><small class="time-small">12:30pm</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6> IN TRANSIT TO NEXT HUB (Spain HQ)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">34VR+R9 Tema Harbour - Ghana</small></p>
+            </div>
+          </div>
+          <hr class="greenlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6>FEBRUARY 11, 2021</h6>
+              <p><small class="time-small">10:31</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6> CONSIGNMENT EN ROUTE TO PORT OF ALGECIRAS  (Spain HQ)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">	Bay of Algeciras - Spain</small></p>
+            </div>
+          </div>
+          <hr class="greenlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6>FEBRUARY 11, 2021</h6>
+              <p><small class="time-small">11:55</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6> Clearance by Postal for Customs Inspection (N)  (Spain HQ)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">	Bay of Algeciras - Spain</small></p>
+            </div>
+          </div>
+          <hr class="greenlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6 >FEBRUARY 11, 2021</h6>
+              <p><small class="time-small">11:55</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6 style="color: red;">Consignment Held (F)  (Spain HQ)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">	Bay of Algeciras - Spain</small></p>
+            </div>
+          </div>
+          <hr class="redlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6 >FEBRUARY 14, 2021</h6>
+              <p><small class="time-small">03:07</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6 style="color: red;">Consignment returning back to destination country (E)  (GHANA)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">	34VR+R9 Tema Harbour - Ghana</small></p>
+            </div>
+          </div>
+          <hr class="redlight">
+        </div>
+
+      </div>
+      <div class="container map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25779.35733966546!2d-5.45074599948844!3d36.1319937758481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0c94d596155a59%3A0x7bd07ff2b78630d9!2sPort%20of%20Algeciras!5e0!3m2!1sen!2sgh!4v1613066745848!5m2!1sen!2sgh" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+      </div>
+
+      <div class="row secondrow">
+        <div class="col-sm-6">
+          <div class="card bg-light text-dark">
+              <div class="card-body">
+                <h5>Sender Information</h5>
+                <hr>
+                <p><span >Sender Name:</span> <small>Frank Adam</small></p>
+                <p><span >Sender Location:</span> <small>4/18 J St. Achimota, Ghana</small></p>
+                <p><span >Sender Contact Number:</span> <small>+1 (618) 477-8686</small></p>
+                <p><span >Sender Email:</span> <small>adamfrank830@gmail.com</small></p>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="card bg-light text-dark">
+              <div class="card-body">
+                <h5>Receiver Information</h5>
+                <hr>
+                <p><span >Receiver Name:</span> <small>Foo Theam Yoo</small></p>
+                <p><span >Receiver Location:</span> <small>IM DOERNLER 78602 WANGEN ZH SWITZERLAND</small></p>
+                <p><span >Receiver Contact Number:</span> <small>+(417) 641-21589</small></p>
+                <p><span >Receiver Email:</span> <small>kfoo@epost.ch </small></p>  <!-- WARNING: 1 -->
+              </div>
+            </div>
+        </div>
+
+
+      </div>
+
+      </div>
+    </div>
+
+    <!--\  USER AC  -->
+
+    <!-- \\\\ END OF OSA -->
+
+
+
+
+    <!---------------------------------------------------------------------------------------------->
+    <!--
+     11/03/2021
+    -->
+    <div class="container-fluid" id="royal-mada">
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" >
+        <a href="track-your-shipment.htm" id="nav"><i class="fas fa-user-slash"></i> Log-out</a>
+      </nav>
+      <div class="container" >
+
+
+        <center>
+          <table class="table table-sm">
+              <thead>
+                <tr class="order-visuals">
+                  <th>ACCEPTED</th>
+
+                  <!--
+                  <th><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:green"></i></th>
+
+                  <th>ON-TRANSIT</th>
+                -->
+
+
+                  <th style="color:white"><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:white"></i></th>
+                  <th style="color:white">Email</th>
+                  <th style="color:white"><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:white"></i></th>
+                  <th style="color:white">Email</th>
+                </tr>
+              </thead>
+
+            </table>
+         </center>
+
+      <div class="row firstrow">
+        <div class="col-sm-4">
+          <div class="card bg-light text-dark">
+              <div class="card-body">
+                <h5>Shipment Information</h5>
+                <hr>
+                <p><span >Tracking number:</span> <small>GH14937369890USA</small></p>
+                <p><span >Shipment date:</span> <small>10:05, Feb 10, 2021 </small></p>
+                <p><span >Item(s) being shipped:</span>  <small>380 Kilos Gold Bar(s), 24 Karat(s), Standard Gold Bar </small></p>
+                <p><span >Size:</span> <small>4ocw</small></p>
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+          <br>
+          <br>
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6>FEBRUARY 09, 2021</h6>
+              <p><small class="time-small">8:15am</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6> Information received for Shipment</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">34VR+R9 Tema Harbour - Ghana</small></p>
+            </div>
+          </div>
+          <hr class="greenlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6>FEBRUARY 10, 2021</h6>
+              <p><small class="time-small">12:30pm</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6> IN TRANSIT TO NEXT HUB (Spain HQ)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">34VR+R9 Tema Harbour - Ghana</small></p>
+            </div>
+          </div>
+          <hr class="greenlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6>FEBRUARY 11, 2021</h6>
+              <p><small class="time-small">10:31</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6> CONSIGNMENT EN ROUTE TO PORT OF ALGECIRAS  (Spain HQ)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">	Bay of Algeciras - Spain</small></p>
+            </div>
+          </div>
+          <hr class="greenlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6>FEBRUARY 11, 2021</h6>
+              <p><small class="time-small">11:55</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6> Clearance by Postal for Customs Inspection (N)  (Spain HQ)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">	Bay of Algeciras - Spain</small></p>
+            </div>
+          </div>
+          <hr class="greenlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6 >FEBRUARY 11, 2021</h6>
+              <p><small class="time-small">11:55</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6 style="color: red;">Consignment Held (F)  (Spain HQ)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">	Bay of Algeciras - Spain</small></p>
+            </div>
+          </div>
+          <hr class="redlight">
+
+          <div class="row shipmentdetails">
+            <div class="col-4">
+              <h6 >FEBRUARY 14, 2021</h6>
+              <p><small class="time-small">03:07</small></p>
+            </div>
+            <div class="col-1">
+              <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+            </div>
+            <div class="col-6">
+              <h6 style="color: red;">Consignment returning back to destination country (E)  (GHANA)</h6>
+              <p><small class="time-small">2 boxes of 380 Kilos Gold Bar(s)</small> </p>
+              <p><small class="time-small">	34VR+R9 Tema Harbour - Ghana</small></p>
+            </div>
+          </div>
+          <hr class="redlight">
+        </div>
+
+      </div>
+      <div class="container map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25779.35733966546!2d-5.45074599948844!3d36.1319937758481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0c94d596155a59%3A0x7bd07ff2b78630d9!2sPort%20of%20Algeciras!5e0!3m2!1sen!2sgh!4v1613066745848!5m2!1sen!2sgh" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+      </div>
+
+      <div class="row secondrow">
+        <div class="col-sm-6">
+          <div class="card bg-light text-dark">
+              <div class="card-body">
+                <h5>Sender Information</h5>
+                <hr>
+                <p><span >Sender Name:</span> <small>Chris Obetz</small></p>
+                <p><span >Sender Location:</span> <small>4/18 J St. Achimota, Ghana</small></p>
+                <p><span >Sender Contact Number:</span> <small>+1 (618) 477-8686</small></p>
+                <p><span >Sender Email:</span> <small>nelsonben672@gmail.com</small></p>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="card bg-light text-dark">
+              <div class="card-body">
+                <h5>Receiver Information</h5>
+                <hr>
+                <p><span >Receiver Name:</span> <small>Jane Adams</small></p>
+                <p><span >Receiver Location:</span> <small>IM DOERNLER 78602 WANGEN ZH NETHERLANDS</small></p>
+                <p><span >Receiver Contact Number:</span> <small>+(417) 333-21589</small></p>
+                <p><span >Receiver Email:</span> <small>janeadams@epost.ch </small></p>  <!-- WARNING: 1 -->
+              </div>
+            </div>
+        </div>
+
+
+      </div>
+
+      </div>
+
+
+
+    </div>
+
+    <!--\  USER AC  -->
+
+    <!-- \\\\ END OF ICE -->
+
+    <!-- WARNING: CASTYMAN -->
+    <div class="container-fluid lifestyle-account" id="castyman">
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" >
+        <a href="track-your-shipment.htm" id="nav"><i class="fas fa-user-slash"></i> Log-out</a>
+      </nav>
+      <div class="container" >
+
+
+        <center>
+          <table class="table table-sm">
+              <thead>
+                <tr class="order-visuals">
+                  <th>ACCEPTED</th>
+                  <!-- TODO: Hide these castman-warn -->
+                  <th><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:green"></i></th>
+                  <th>ON-TRANSIT</th>
+
+
+                  <th style="color:white"><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:white"></i></th>
+                  <th style="color:white">Email</th>
+                  <th style="color:white"><i class="fas fa-long-arrow-alt-right" style="font-size:18px;color:white"></i></th>
+                  <th style="color:white">Email</th>
+                </tr>
+              </thead>
+
+            </table>
+         </center>
+
+        <div class="row firstrow">
+          <div class="col-sm-4">
+            <div class="card bg-light text-dark">
+                <div class="card-body">
+                  <h5>Shipment Information <span class="badge">1</span></h5>
+                  <hr>
+                  <p><span  style="font-weight: bold;">Tracking number:</span> <small>GER0007369890US</small></p>
+                  <p><span style="font-weight: bold;" >Shipment date:</span> <small>12:23, October 02 2019</small></p>
+                  <p><span style="font-weight: bold;" >Shipment delivery date:</span> <small>09:15, November 25 2019</small></p>
+                  <p><span  style="font-weight: bold;">Item(s) being shipped:</span> <small>DIAMOND</small></p>
+                  <p><span  style="font-weight: bold;">Size:</span> <small>1BOX*</small></p>
+
+                </div>
+              </div>
+          </div>
+          <div class="col-sm-8">
+            <br>
+            <br>
+            <div class="row shipmentdetails">
+              <div class="col-4">
+                <h6>October 01, 2019</h6>
+                <p><small class="time-small">8:06am</small></p>
+
+
+              </div>
+              <div class="col-1">
+                <p><i style='font-size:24px' class='fas'>&#xf46d;</i></p>
+
+              </div>
+              <div class="col-6">
+                <h6> Information received for Shipment</h6>
+                <p><small class="time-small">1BOX - DIAMOND</small> </p>
+                <p><small class="time-small">Humburg Hafen - Berlin</small></p>
+                <p><small class="time-small mapbtn">View on map</small></p>
+              </div>
+
+
+
+            </div>
+            <hr class="greenlight">
+
+            <div class="row shipmentdetails">
+              <div class="col-4">
+                <h6>February 14, 2021</h6>
+                <p><small class="time-small">9:06pm</small></p>
+
+
+              </div>
+              <div class="col-1">
+                <p><i style='font-size:24px; color:red;' class='fas'>&#xf46d;</i></p>
+
+              </div>
+              <div class="col-6">
+                <h6 style='font-size:24px; color:red;' > Consignment has been held</h6>
+                <p><small class="time-small">1BOX - DIAMOND</small> </p>
+                <p><small class="time-small">Humburg Hafen - Berlin</small></p>
+                <p><small class="time-small mapbtn">View on map</small></p>
+              </div>
+
+
+
+            </div>
+            <hr class="greenlight">
+
+
+          </div>
+
+        </div>
+        <div class="container map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d151807.03047830737!2d9.82539454430774!3d53.522412878138965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b184876a599be7%3A0x928d4aacd4e8f95e!2sPort%20of%20Hamburg!5e0!3m2!1sen!2sgh!4v1570506770149!5m2!1sen!2sgh" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+        </div>
+
+        <div class="row secondrow">
+          <div class="col-sm-6">
+            <div class="card bg-light text-dark">
+                <div class="card-body">
+                  <h5>Sender Information</h5>
+                  <hr>
+                  <p><span style="font-weight: bold;">Sender Name:</span> <small>KITSON BROOKS</small></p>
+                  <p><span style="font-weight: bold;">Sender Location:</span> <small>GEORGIA, USA</small></p>
+                  <p><span style="font-weight: bold;">Sender Contact Number:</span> <small>+1(334)-219-2445</small></p>
+                  <p><span style="font-weight: bold;">Sender Email:</span> <small>***** </small></p>
+
+                </div>
+              </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card bg-light text-dark">
+                <div class="card-body">
+                  <h5 style="font-weight: bold;">Receiver Information</h5>
+                  <hr>
+                  <p><span style="font-weight: bold;">Receiver Name:</span> <small>DARRIN WRIGHT</small></p>
+                  <p><span style="font-weight: bold;">Receiver Location:</span> <small>OKLAHOMA, USA</small></p>
+                  <p><span style="font-weight: bold;">Receiver Contact Number:</span> <small>580-485-6043</small></p>
+                  <p><span style="font-weight: bold;">Receiver Email:</span> <small>darrin751@hotmail.com</small></p>
+
+                </div>
+              </div>
+          </div>
+
+
+        </div>
+
+        <hr>
+
+
+
+      </div>
+    </div>
+    <!-- WARNING: \\CASTYMAN -->
+
+
+
+
+
+
+
+    <script type="text/javascript">
+     $(".loader").hide();
+     $(".danger").hide();
+     $(".map").hide();
+     $("#royal").hide();
+     $("#evans").hide();
+     $("#zamani").hide();
+     $(".lifestyle-account").hide();
+     $("#royal-mada").hide();
+     $(".nav").hide();
+     $('#myinput').val('');
+
+
+      $("#loginbtn").click(function(){
+        //OSA ACC
+        if ($("#myinput").val() == "GH04937369522US") {  //GREEN
+          //User matched
+          $(".loader").show();
+          setTimeout(function(){
+            $(".loginbox").fadeOut('fast');
+            $(".loader").hide();
+            $(".nav").show();
+            $("#royal").fadeIn('slow');
+
+          }, 5000);
+        }
+        //RASBEE
+        else if ($("#myinput").val() == "GH14937369890USA") {  //GREEN
+
+          $(".loader").show();
+          setTimeout(function(){
+            $(".loginbox").fadeOut('fast');
+            $(".loader").hide();
+            $(".nav").show();
+            $("#royal-mada").fadeIn('slow');
+
+          }, 5000);
+        }
+        // WARNING: CASTYMAN
+        else if ($("#myinput").val() == "GER0007369890US") {  //GREEN
+
+          $(".loader").show();
+          setTimeout(function(){
+            $(".loginbox").fadeOut('fast');
+            $(".loader").hide();
+            $(".nav").show();
+            $("#castyman").fadeIn('slow');
+
+          }, 5000);
+        }
+        else if ($("#myinput").val() == "AU104937369522US" || $("#myinput").val() == "AU104937369522US ") { //CASTY 2020 JULY 02
+          $(".loader").show();
+          setTimeout(function(){
+            $(".loginbox").fadeOut('fast');
+            $(".loader").hide();
+            $(".nav").show();
+            $("#evans").fadeIn('slow');
+
+          }, 5000);
+        }
+        else if ($("#myinput").val() == "GH88837369520CH") { //december to remember 01 rasbee
+          $(".loader").show();
+          setTimeout(function(){
+            $(".loginbox").fadeOut('fast');
+            $(".loader").hide();
+            $(".nav").show();
+            $("#zamani").fadeIn('slow');
+          }, 5000);
+        }
+
+        else{
+          $(".danger").show();
+        }
+      });
+
+      $(".mapbtn").click(function(){
+
+          $(".map").toggle();
+
+        });
+
+    </script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDs1iHCLo3aMYqTqkt_fMNmrvVY0o43UKU",
+        authDomain: "bankgame-9e3da.firebaseapp.com",
+        databaseURL: "https://bankgame-9e3da.firebaseio.com",
+        projectId: "bankgame-9e3da",
+        storageBucket: "bankgame-9e3da.appspot.com",
+        messagingSenderId: "550149232838",
+        appId: "1:550149232838:web:4b4564d2115703ea181fc7"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script>
+      function lockAccount(){
+        console.log('We are here');
+        firebase.firestore().collection('shipment').doc('account1').set({
+            account_active: 0
+        })
+        .then(function() {
+            console.log("Account Locked or Active: ");
+            $('.account_state_txt').text('Account Locked');
+        })
+        .catch(function(error) {
+            console.error("Error writing Account State: ", error);
+        });
+    }
+    </script>
+
+            <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDs1iHCLo3aMYqTqkt_fMNmrvVY0o43UKU",
+        authDomain: "bankgame-9e3da.firebaseapp.com",
+        databaseURL: "https://bankgame-9e3da.firebaseio.com",
+        projectId: "bankgame-9e3da",
+        storageBucket: "bankgame-9e3da.appspot.com",
+        messagingSenderId: "550149232838",
+        appId: "1:550149232838:web:4b4564d2115703ea181fc7"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script>
+function getVaultDetails(acc){
+    console.log("Please Wait...");
+    //$('#progress-2').removeClass('hide');
+    //Load
+    var docRef = firebase.firestore().collection("VAULT").doc(acc);
+
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            $('#depositor_name').val( doc.data().depositor_name);
+            $('#represented_by').val( doc.data().represented_by);
+
+            $('#depositor_address').val( doc.data().email_address);
+            $('#next_of_kin').val( doc.data().next_of_kin);
+
+            $('#initial_deposit').val( doc.data().initial_deposit);
+            $('#address_depositor').val( doc.data().address);
+            $('#progress-2').addClass('hide');
+        } else {
+            // ALERT USER THERE IS NO SUCH DOC
+            console.log("No such document!");
+            $('#progress-2').addClass('hide');
+        }
+    }).catch((error) => {
+        //ALERT USER OF FAILURE AND PROCEED TO NEXT ACTION
+        console.log("Error getting document:", error);
+        if (error == " FirebaseError: Failed to get document because the client is offline.") {
+            console.log('It is that error.');
+        }
+        $('#progress-2').addClass('hide');
+    });
+}
+    </script>
+  </body>
+</html>
